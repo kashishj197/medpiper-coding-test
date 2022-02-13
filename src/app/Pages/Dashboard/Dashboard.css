@@ -1,0 +1,10 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+}
+.dashboard-table {
+    margin-top: 4vh;
+    width: 95vw;
+    height: 100%;
+    margin-bottom: 4vh;
+}

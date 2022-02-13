@@ -1,0 +1,13 @@
+.createUser {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    margin: 10px;
+}
+.login-form {
+    margin-top: 4em;
+    width: 100%;
+}
+.submit-form-button {
+    width: 100%;
+}

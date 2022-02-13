@@ -1,0 +1,10 @@
+.ant-layout {
+    background: #ffff;
+}
+.layout-header {
+    z-index: 100;
+}
+.header {
+    color: #ffff;
+    font-size: 18px;
+}

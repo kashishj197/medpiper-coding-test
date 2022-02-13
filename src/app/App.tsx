@@ -21,7 +21,7 @@ const App: React.FunctionComponent<{}> = props => {
           <Route path="home" element={<Home setLoginStatus={setLogin}/>} />
           <Route path="dashboard">
             <Route index element={loggedIn && <Dashboard />} />
-            <Route path=":id" element={loggedIn && <Details />} />
+            <Route path=":id" element={<Details />} />
           </Route>
           <Route path="create" element={<Create />} />
         </Routes>

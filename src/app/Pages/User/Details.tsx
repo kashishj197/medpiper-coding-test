@@ -17,13 +17,13 @@ const Details: React.FunctionComponent<{}> = props => {
   }, [])
   return (
     <div className='details'>
-      <Descriptions title="User Info" layout="vertical" bordered>
+      <Descriptions title="User Details" layout="vertical" bordered>
         <Descriptions.Item label="Name">{userData?.name}</Descriptions.Item>
         <Descriptions.Item label="Username">{userData?.username}</Descriptions.Item>
         <Descriptions.Item label="Address" span={2}>{`${userData?.fullAddress}, ${userData?.address.zipcode}`}</Descriptions.Item>
         <Descriptions.Item label="Phone">{userData?.phone}</Descriptions.Item>
-        <Descriptions.Item label="Website">{userData?.website}</Descriptions.Item>
-        <Descriptions.Item label="Company" span={2}>{userData?.company?.name}</Descriptions.Item>
+        {userData?.website && <Descriptions.Item label="Website">{userData?.website}</Descriptions.Item>}
+        {userData?.company?.name && <Descriptions.Item label="Company" span={2}>{userData?.company?.name}</Descriptions.Item>}
       </Descriptions>
     </div>
   )

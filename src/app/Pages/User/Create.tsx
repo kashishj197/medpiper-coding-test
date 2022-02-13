@@ -8,9 +8,11 @@ import { fillTable } from '../../Store/Actions';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import { INotification } from '../../Interfaces/Notifications';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Create: React.FunctionComponent<{}> = props => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const numberRegex: RegExp = new RegExp(/^[0 - 9]/);
   const websiteRegex: RegExp = new RegExp(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/);
   const onFinish = (values: ICreateForm) => {
@@ -23,6 +25,7 @@ const Create: React.FunctionComponent<{}> = props => {
             dispatch(fillTable(res.data));
             const successContent: INotification = { title: "Create", text: "User added successfully", icon: "success" };
             swal(successContent);
+            navigate(`../dashboard/${res.data.key}`)
           }
         })
         .catch((err) => {

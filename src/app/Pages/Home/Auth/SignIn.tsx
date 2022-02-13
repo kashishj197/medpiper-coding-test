@@ -39,7 +39,8 @@ const SignIn: React.FunctionComponent<ISignIn> = props => {
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ min: 7, required: true, message: 'Please input your Password!' }]}
+          rules={[{ required: true, message: 'Please input your Password!' },
+          {min: 7, message: 'Minimum length should be 7'}]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}

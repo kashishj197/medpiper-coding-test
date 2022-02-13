@@ -10,12 +10,17 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import ISignIn from '../../../Interfaces/SignIn';
 import { INotification } from '../../../Interfaces/Notifications';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp: React.FunctionComponent<ISignIn> = props => {
+  const navigate = useNavigate();
   const onFinish = (values: any) => {
     const success: INotification = { title: "Sign Up", text: "Successfully Signed Up", icon: "success" };
     swal(success);
-    props.setSignIn(true)
+    props.setLoggedIn && props.setLoggedIn(true);
+    setTimeout(() => {
+      navigate('../dashboard');
+    }, 500);
   };
   return (
     <div className='signin'>

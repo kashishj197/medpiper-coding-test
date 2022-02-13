@@ -9,7 +9,7 @@ const Home: React.FunctionComponent<IHome> = props => {
   return (
     <div className='home'>
       {signIn && <SignIn setSignIn={setSignIn} setLoggedIn={props.setLoginStatus}/>}
-      {!signIn && <SignUp setSignIn={setSignIn}/>}
+      {!signIn && <SignUp setSignIn={setSignIn} setLoggedIn={props.setLoginStatus}/>}
     </div>
   )
 }

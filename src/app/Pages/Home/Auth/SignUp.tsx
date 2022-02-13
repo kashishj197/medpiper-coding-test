@@ -8,10 +8,14 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import ISignIn from '../../../Interfaces/SignIn';
+import { INotification } from '../../../Interfaces/Notifications';
+import swal from 'sweetalert';
 
 const SignUp: React.FunctionComponent<ISignIn> = props => {
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    const success: INotification = { title: "Sign Up", text: "Successfully Signed Up", icon: "success" };
+    swal(success);
+    props.setSignIn(true)
   };
   return (
     <div className='signin'>

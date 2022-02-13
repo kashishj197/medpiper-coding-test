@@ -32,10 +32,15 @@ const Create: React.FunctionComponent<{}> = props => {
   };
 
   return (
-    <div className='createUser'>
+    <div className='createuser'>
       <Form
-        name="normal_login"
-        className="login-form"
+        name="createuser"
+        className="createuser-form"
+        labelCol={{ flex: '110px' }}
+        labelAlign="left"
+        labelWrap
+        wrapperCol={{ flex: 1 }}
+        colon={false}
         onFinish={onFinish}
       >
         <Form.Item
@@ -55,7 +60,6 @@ const Create: React.FunctionComponent<{}> = props => {
         <Form.Item
           label="Address"
           name="address"
-          rules={[{ required: true, message: 'Please provide your Address!' }]}
         >
           <Input.Group compact>
             <Form.Item name={['address', 'street']} rules={[{ required: true, message: 'Street is required!' }]}>

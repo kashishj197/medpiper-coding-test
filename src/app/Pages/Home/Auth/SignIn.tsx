@@ -15,7 +15,6 @@ import { INotification } from '../../../Interfaces/Notifications';
 const SignIn: React.FunctionComponent<ISignIn> = props => {
   const navigate = useNavigate();
   const onFinish = (values: ISignInForm) => {
-    console.log('Received values of form: ', values);
     props.setLoggedIn && props.setLoggedIn(true);
     const successContent: INotification = { title: "Log In", text: "You are now logged in", icon: "success" };
     swal(successContent);

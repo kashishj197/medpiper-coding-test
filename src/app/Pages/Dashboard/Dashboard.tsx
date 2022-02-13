@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../Axios';
 import ITable from '../../Interfaces/Table';
 import './Dashboard.css';
+import { PlusOutlined } from '@ant-design/icons';
 import swal from 'sweetalert';
 import { fillTable } from '../../Store/Actions';
 import { TableState } from '../../Store/tableReducer';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 import { ColumnType } from 'antd/lib/table';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { INotification } from '../../Interfaces/Notifications';
 
 const Dashboard: React.FunctionComponent<{}> = props => {
+  const navigate = useNavigate();
   const tableData = useSelector<TableState, TableState["data"]>((state) => state.data);
   const dispatch = useDispatch();
   const columns: ColumnType<ITable>[] = [
@@ -92,6 +94,9 @@ const Dashboard: React.FunctionComponent<{}> = props => {
           scroll={{ x: 'calc(700px + 50%)', y: 700 }}
         />
       </div>
+      <Button type="primary" onClick={() => {navigate('../../create')}}className="create-user--button">
+        <PlusOutlined style={{ fontSize: '24px' }}/>
+      </Button>
     </div>
   )
 }

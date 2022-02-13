@@ -8,7 +8,7 @@ import { fillTable } from '../../Store/Actions';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import { INotification } from '../../Interfaces/Notifications';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Create: React.FunctionComponent<{}> = props => {
   const dispatch = useDispatch();

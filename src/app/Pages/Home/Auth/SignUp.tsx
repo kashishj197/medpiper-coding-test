@@ -15,13 +15,27 @@ import { useNavigate } from 'react-router-dom';
 const SignUp: React.FunctionComponent<ISignIn> = props => {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
-    const success: INotification = { title: "Sign Up", text: "Successfully Signed Up", icon: "success" };
-    swal(success);
-    props.setLoggedIn && props.setLoggedIn(true);
-    setTimeout(() => {
-      navigate('../dashboard');
-    }, 500);
+    if (validatePass(values)) {
+      const success: INotification = { title: "Sign Up", text: "Successfully Signed Up", icon: "success" };
+      swal(success);
+      props.setLoggedIn && props.setLoggedIn(true);
+      setTimeout(() => {
+        navigate('../dashboard');
+      }, 500);
+    } else {
+      const error: INotification = {
+        title: "Error",
+        text: "Password and Confirm password are not same",
+        icon: "error"
+      };
+      swal(error);
+    }
   };
+  const validatePass = (values: any) => {
+    if (values.password === values.confirmPassword) return true;
+
+    return false;
+  }
   return (
     <div className='signin'>
       <Form
@@ -38,7 +52,8 @@ const SignUp: React.FunctionComponent<ISignIn> = props => {
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          rules={[{ required: true, message: 'Please input your Password!' },
+          { min: 7, message: 'Minimum length should be 7' }]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
@@ -48,7 +63,8 @@ const SignUp: React.FunctionComponent<ISignIn> = props => {
         </Form.Item>
         <Form.Item
           name="confirmPassword"
-          rules={[{ required: true, message: 'Please confirm your password!' }]}
+          rules={[{ required: true, message: 'Please confirm your password!' },
+          { min: 7, message: 'Minimum length should be 7' }]}
         >
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}

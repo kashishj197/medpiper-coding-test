@@ -11,6 +11,8 @@ import { INotification } from '../../Interfaces/Notifications';
 
 const Create: React.FunctionComponent<{}> = props => {
   const dispatch = useDispatch();
+  const numberRegex: RegExp = new RegExp(/^[0 - 9]/);
+  const websiteRegex: RegExp = new RegExp(/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/);
   const onFinish = (values: ICreateForm) => {
     async function fetchData() {
       await axios.post<ITable>("/users", values)
@@ -23,8 +25,14 @@ const Create: React.FunctionComponent<{}> = props => {
             swal(successContent);
           }
         })
-        .catch((error) => {
-        console.log(error);
+        .catch((err) => {
+          const error: INotification = {
+            title: "Error",
+            text: "Not able to create user",
+            icon: "error"
+          };
+          swal(error);
+          console.log(err);
       });
     }
 
@@ -82,7 +90,8 @@ const Create: React.FunctionComponent<{}> = props => {
         <Form.Item
           label="Phone"
           name="phone"
-          rules={[{ required: true, message: 'Please input your Phone!' }]}
+          rules={[{ required: true, message: 'Please input your Phone!' },
+          { pattern: numberRegex, message: 'Only number allowed!' }]}
         >
           <Input
             type="phone"
@@ -92,7 +101,8 @@ const Create: React.FunctionComponent<{}> = props => {
         <Form.Item
           label="Website"
           name="website"
-          rules={[{ required: false, message: 'Please input your Website!' }]}
+          rules={[{ required: false, message: 'Please input your Website!' },
+          {pattern: websiteRegex, message: 'Please enter valid url'}]}
         >
           <Input
             placeholder="Website URL"

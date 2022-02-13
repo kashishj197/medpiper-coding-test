@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../Axios';
 import ITable from '../../Interfaces/Table';
 import './Dashboard.css';
+import swal from 'sweetalert';
 import { fillTable } from '../../Store/Actions';
 import { TableState } from '../../Store/tableReducer';
 import { Table } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { Link } from 'react-router-dom';
-import Details from '../User/Details';
+import { INotification } from '../../Interfaces/Notifications';
 
 const Dashboard: React.FunctionComponent<{}> = props => {
   const tableData = useSelector<TableState, TableState["data"]>((state) => state.data);
@@ -67,8 +68,14 @@ const Dashboard: React.FunctionComponent<{}> = props => {
             });
           }
         })
-        .catch((error) => {
-        console.log(error);
+        .catch((err) => {
+          const error: INotification = {
+            title: "Error",
+            text: "Not able to fetch table data",
+            icon: "error"
+          };
+          swal(error);
+          console.log(err);
       });
     }
 
